@@ -7,6 +7,9 @@ export const NavbarRoutes = () => {
     const pathname = usePathname();
     const router = useRouter();
 
+    const isTeacherPage = pathname?.startsWith("/teacher");
+    const isPlayerPage = pathname?.startsWith("/player");
+
     return(
         <div className="flex gap-x-2 ml-auto">
             <UserButton/>
