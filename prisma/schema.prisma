@@ -9,7 +9,7 @@ generator client {
 }
 
 
-model course{
+model Course{
   id String @id @default(uuid())
   userId String
   title String @db.Text
@@ -32,7 +32,7 @@ model Attachment{
   url String @db.Text
 
   courseId String
-  course course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
