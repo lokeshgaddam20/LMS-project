@@ -7,3 +7,35 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+
+model course{
+  id String @id @default(uuid())
+  userId String
+  title String @db.Text
+  description String @db.Text
+  price Float?
+  imageUrl String @db.Text
+  isPublished Boolean @default(false)
+
+  categoryId String?
+
+  attachment Attachment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Attachment{
+  id String @id @default(uuid())
+  name String
+  url String @db.Text
+
+  courseId String
+  course course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([courseId])
+}
